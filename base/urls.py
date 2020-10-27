@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from product.views import ProductListView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('store', ProductListView.as_view(), name = 'store')
 ]
+
+#Para tener acceso a las imagenes via url
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

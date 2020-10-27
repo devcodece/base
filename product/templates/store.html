@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    {% for p in product %}
+    <div class="col-lg-4">
+        <img class="thumbnail img-fluid" src="{{ imageURL }}" alt="">
+        <div class="box-element product">
+            <h6><strong>{{ p.tx_product_name }}</strong></h6>
+            <span class="text-info">{{ p.id_brand.tx_brand_name }}</span>
+            {% for c in p.id_color.all %}
+            <span class="badge" style="width: 45px; height: 20px; border: 1px solid black; 
+            background: {{ c.tx_name_color }}; {% if c.tx_name_color == 'Black' %} color: White {% endif %};">
+            {{ c.tx_name_color }}</span>
+            {% endfor %}
+            <hr>
+            <button data-product={{ product.id }} data-action="add"
+            class="btn btn-outline-secondary add-btn update-cart">Add to Card</button>
+            <a href="#" class="btn btn-outline-success">View</a>
+            <h4 style="float: right;">${{ p.price_sale_unit }}</h4>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    
+{% endblock content %}

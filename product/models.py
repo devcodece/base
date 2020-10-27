@@ -32,19 +32,26 @@ class CdtVendor(models.Model):
         return self.tx_name_vendor
 
 
-class TdtColor(models.Model):
-    tx_name_color = models.CharField(max_length=75)
 
-    def __str__(self):
-        return self.tx_name_color
 
 class CdtProductPhoto(models.Model):
     tx_url_photo = models.ImageField(upload_to = 'img_products')
     bl_primary = models.BooleanField(default=False)
-    id_product_color = models.ForeignKey(TdtColor, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id)
+    
+    @property
+    def imageURL(self):
+        url = self.tx_url_photo.url
+
+class TdtColor(models.Model):
+    tx_name_color = models.CharField(max_length=75)
+    id_photo = models.ForeignKey(CdtProductPhoto, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.tx_name_color
+    
 
 class CdtSize(models.Model):
     tx_name_size =  models.CharField(max_length=4)
