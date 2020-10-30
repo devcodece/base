@@ -2,9 +2,12 @@
 {% load static %}
 {% block content %}
 <div class="row">
+    
     {% for p in product %}
     <div class="col-lg-4">
-        <img class="thumbnail img-fluid" src="{{ imageURL }}" alt="">
+        
+        <img class="thumbnail img-fluid" src={% for i in p.id_color.all %}"{{i.id_photo.tx_url_photo.url}}"{% endfor %} alt="">
+        
         <div class="box-element product">
             <h6><strong>{{ p.tx_product_name }}</strong></h6>
             <span class="text-info">{{ p.id_brand.tx_brand_name }}</span>
@@ -12,7 +15,9 @@
             <span class="badge" style="width: 45px; height: 20px; border: 1px solid black; 
             background: {{ c.tx_name_color }}; {% if c.tx_name_color == 'Black' %} color: White {% endif %};">
             {{ c.tx_name_color }}</span>
+            
             {% endfor %}
+            <span></span>
             <hr>
             <button data-product={{ product.id }} data-action="add"
             class="btn btn-outline-secondary add-btn update-cart">Add to Card</button>

@@ -125,7 +125,7 @@ STATICFILES_DIRS = [
 ]
 
 #Indicar la ruta media_url para urls.py
-MEDIA_URL = '/img_products/'
+MEDIA_URL = '/images/'
 
 #Agregar la ubicacion del directorio images
-MEDIA_ROOT = os.path.join(BASE_DIR, 'img_products/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')

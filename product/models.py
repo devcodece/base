@@ -35,19 +35,19 @@ class CdtVendor(models.Model):
 
 
 class CdtProductPhoto(models.Model):
-    tx_url_photo = models.ImageField(upload_to = 'img_products')
+    tx_url_photo = models.ImageField(null=True, blank=True)
     bl_primary = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id)
     
-    @property
+    """ @property
     def imageURL(self):
-        url = self.tx_url_photo.url
+        url = self.tx_url_photo.url """
 
 class TdtColor(models.Model):
     tx_name_color = models.CharField(max_length=75)
-    id_photo = models.ForeignKey(CdtProductPhoto, on_delete=models.CASCADE)
+    id_photo = models.ForeignKey(CdtProductPhoto, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.tx_name_color
